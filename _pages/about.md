@@ -10,6 +10,7 @@ redirect_from:
 
 Page under construction.
 
+<!-- {% raw %} -->
 <div id="ytplayer"></div>
 
 <script>
@@ -30,3 +31,4 @@ Page under construction.
     });
   }
 </script>
+<!-- {% endraw %}) -->
