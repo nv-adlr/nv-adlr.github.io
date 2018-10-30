@@ -25,7 +25,7 @@ Below we provide real and synthesized samples using our WaveGlow model, Griffim-
 [WaveNet]: https://deepmind.com/blog/wavenet-generative-model-raw-audio/
 [PyTorch]: http://pytorch.org
 
-<table border="1" width="100%" style="font-size:24px">
+<table border="1" width="100%" style="font-size:16px">
     <tr>
         <th bgcolor="#3cb371" height="48"> Griffin-Lim </th>
         <th bgcolor="#3cb371"> WaveNet </th>
