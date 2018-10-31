@@ -10,7 +10,7 @@ date: 2018-10-29
 # WaveGlow: a Flow-based Generative Network for Speech Synthesis
 ## Ryan Prenger, Rafael Valle, and Bryan Catanzaro
 
-In our recent [paper], we propose WaveGlow: a flow-based network capable
+In our recent paper, we propose WaveGlow: a flow-based network capable
 of generating high quality speech from mel-spectrograms. WaveGlow
 combines insights from [Glow] and [WaveNet] in order to provide fast,
 efficient and high-quality audio synthesis, without the need for
@@ -24,7 +24,7 @@ Our [PyTorch] implementation produces audio samples at a rate of more than
 audio quality as good as the best publicly available WaveNet
 implementation. 
 
-Below we provide real samples and synthesized samples using our WaveGlow model, Griffim-Lim 
+Below we provide real samples and synthesized samples using our WaveGlow model, Griffin-Lim 
 and an open source [WaveNet implementation].
 
 [paper]: arxiv.org
