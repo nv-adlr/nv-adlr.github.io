@@ -11,7 +11,8 @@ title                    : "NVIDIA Applied Deep Learning Research"
 title_separator          : "-"
 name                     : &name "NVIDIA"
 description              : &description ""
-url                      : https://nv-adlr.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+#url                      : "https://nv-adlr.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                       : "http://127.0.0.1:4000"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "nv-adlr/nv-adlr.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
@@ -118,6 +119,7 @@ author:
 include:
   - .htaccess
   - _pages
+  - _projects
   - files
 exclude:
   - "*.sublime-project"
@@ -183,7 +185,9 @@ collections:
   talks:
     output: true
     permalink: /:collection/:path/
-
+  projects:
+    output: true
+    permalink: /:collection/:path/
 
 # Defaults
 defaults:
