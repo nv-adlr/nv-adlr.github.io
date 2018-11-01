@@ -2,7 +2,7 @@
 title: "Large Scale Language Modeling: Converging on 40GB of Text in Four Hours"
 collection: publications
 permalink: /publication/2018-large-batch-lm
-excerpt: 'This paper shows how to do exa-scale distributed, large batch, mixed precision training of language models with investigations into the successes and limitations of large batch training on publicly available language datasets.'
+excerpt: 'This paper shows how to do large scale distributed, large batch, mixed precision training of language models with investigations into the successes and limitations of large batch training on publicly available language datasets.'
 date: 2018-08-03
 venue: '2018 High Performance Machine Learning Workshop'
 paperurl: 'https://arxiv.org/abs/1808.01371'
