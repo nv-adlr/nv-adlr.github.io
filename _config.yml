@@ -9,7 +9,7 @@
 locale                   : "en-US"
 title                    : "NVIDIA Applied Deep Learning Research"
 title_separator          : "-"
-name                     : &name "NVIDIA"
+name                     : &name "NVIDIA ADLR"
 description              : &description ""
 url                      : "https://nv-adlr.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 #url                       : "http://127.0.0.1:4000"
@@ -67,7 +67,7 @@ og_image                 :  # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
+  type                   : Organization # Person or Organization (defaults to Person)
   name                   : # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
 
@@ -213,6 +213,15 @@ defaults:
   - scope:
       path: ""
       type: teaching
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
+  # _projects
+  - scope:
+      path: ""
+      type: projects
     values:
       layout: single
       author_profile: true
