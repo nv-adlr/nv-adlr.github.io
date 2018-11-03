@@ -8,7 +8,7 @@ date: 2018-10-29
 ---
 
 <p align="center" markdown="1">
-![WaveGlow](/images/waveglow_logo.png){:width="70%"}
+![WaveGlow](images/waveglow_logo.png){:width="70%"}
 </p>
 
 # WaveGlow: a Flow-based Generative Network for Speech Synthesis
