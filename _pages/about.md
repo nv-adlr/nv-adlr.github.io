@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Page under construction.
+We research new ways of using deep learning to solve problems at NVIDIA. 
 
 <!-- {% raw %} -->
 <div id="ytplayer"></div>
@@ -25,8 +25,6 @@ Page under construction.
   var player;
   function onYouTubePlayerAPIReady() {
     player = new YT.Player('ytplayer', {
-      height: '360',
-      width: '640',
       videoId: 'gg0F5JjKmhA'
     });
   }
