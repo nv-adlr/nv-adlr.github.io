@@ -9,8 +9,7 @@ redirect_from:
 ---
 
 We research new ways of using deep learning to solve problems at
-NVIDIA, both to improve NVIDIA's products as well as NVIDIA's
-productivity. 
+NVIDIA. 
 
 Our work presently focuses on four main application areas, as well as systems research:
   * Graphics and Vision. AI is transforming computer graphics, giving
