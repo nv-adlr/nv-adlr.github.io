@@ -27,9 +27,12 @@ Our [PyTorch] implementation produces audio samples at a rate of more than
 audio quality as good as the best publicly available WaveNet
 implementation. 
 
-Below we provide real samples and synthesized samples using our WaveGlow model, Griffin-Lim 
-and an open source [WaveNet implementation].
+Below we provide real samples and synthesized samples using our WaveGlow model,
+Griffin-Lim and an open source [WaveNet implementation]. We also provide
+WaveGlow samples using mel-spectrograms produced with our [Tacotron 2
+implementation].
 
+[Tacotron 2 implementation]: http://github.com/nvidia/tacotron2
 [paper]: https://arxiv.org/abs/1811.00002
 [WaveNet implementation]: https://github.com/r9y9/wavenet_vocoder
 [Glow]: https://blog.openai.com/glow/
