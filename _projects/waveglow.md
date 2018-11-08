@@ -32,12 +32,16 @@ Griffin-Lim and an open source [WaveNet implementation]. We also provide
 WaveGlow samples using mel-spectrograms produced with our [Tacotron 2
 implementation].
 
+Code for training and inference, along with a pretrained model on LJS,
+is available on our [Github repository][WaveGlow implementation].
+
 [Tacotron 2 implementation]: http://github.com/nvidia/tacotron2
 [paper]: https://arxiv.org/abs/1811.00002
 [WaveNet implementation]: https://github.com/r9y9/wavenet_vocoder
 [Glow]: https://blog.openai.com/glow/
 [WaveNet]: https://deepmind.com/blog/wavenet-generative-model-raw-audio/
 [PyTorch]: http://pytorch.org
+[WaveGlow implementation]: https://github.com/NVIDIA/waveglow
 
 {::nomarkdown}
 {% include_relative waveglow_files.html %}
