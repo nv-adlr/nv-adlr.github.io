@@ -3,10 +3,10 @@ title: "Improving Semantic Segmentation via Video Propagation and Label Relaxati
 collection: publications
 permalink: /publication/2018-Segmentation
 excerpt: 'This paper shows how to scale up training sets for semantic segmentation by using video prediction-based data synthesis method. Our proposed joint propagation strategy and boundary relaxation technique can alleviate the label noise in the synthesized samples and lead to state-of-the-art performance on three benchmark datasets Cityscapes, CamVid and KITTI.'
-date: 2018-11-30
-venue: 'NA'
-paperurl: 'NA'
-citation: 'Yi Zhu, Karan Sapra, Fitsum A. Reda, Kevin J. Shih, Shawn Newsam, Andrew Tao, Bryan Catanzaro, Improving Semantic Segmentation via Video Propagation and Label Relaxation.'
+date: 2018-12-05
+venue: 'arXiv'
+paperurl: 'https://arxiv.org/abs/1812.01593'
+citation: 'Yi Zhu, Karan Sapra, Fitsum A. Reda, Kevin J. Shih, Shawn Newsam, Andrew Tao and Bryan Catanzaro, Improving Semantic Segmentation via Video Propagation and Label Relaxation, arXiv:1812.01593, 2018.'
 
 ---
 
