@@ -14,22 +14,22 @@ Below are sample videos showing 2x frame rate upscaling using SDCNet. In each vi
 To view the results frame by frames, we recommend to download and watch the videos in media players such as [VLC](https://www.videolan.org/vlc/index.html) or [SM](https://www.smplayer.info/). <br />
 <b>Note</b>: If you are watching the videos directly as embedded in this webpage, the RGB flags may not be visible.
 
-Various short clips (compared with [MC-Net](https://arxiv.org/pdf/1706.08033.pdf))
+Various short clips (compared with [MC-Net](https://arxiv.org/pdf/1706.08033.pdf)). Download [link](https://drive.google.com/file/d/1-dkY6zM_08sM2wseoU60u4TORHBS96a8/view?usp=sharing).
 <video poster="https://drive.google.com/uc?export=view&id=1-sf93iMQ7RrBWEaxgwqwh17S9zNznbXS" width="960" height="540" controls>
   <source src="https://drive.google.com/uc?export=view&id=1-dkY6zM_08sM2wseoU60u4TORHBS96a8" type="video/mp4">Your browser does not support the video tag.
 </video>
 
-A sample video from [YouTube8M](https://research.google.com/youtube8m/)
+A sample video from [YouTube8M](https://research.google.com/youtube8m/). Download [link](https://drive.google.com/file/d/1-hr957iLkvqtCWVNbTeztz4ibZHDZsoD/view?usp=sharing).
 <video poster="https://drive.google.com/uc?export=view&id=1-uHsdUUchRWeIgzoF34TvPTSomQxH_En" width="960" height="512" controls>
-  <source src="https://drive.google.com/uc?export=view&id=1-hr957iLkvqtCWVNbTeztz4ibZHDZsoD" type="video/mp4">Your browser does not support the video tag.
+  <source src="https://drive.google.com/uc?export=view&id=105PrdUu-9JqFLMuM8FClDk9vgJKNZIIL" type="video/mp4">Your browser does not support the video tag.
 </video>
 
-A sample video from [YouTube8M](https://research.google.com/youtube8m/) video
+A sample video from [YouTube8M](https://research.google.com/youtube8m/). Download [link](https://drive.google.com/file/d/1-Y3RvIw2Pvu9z9Xp9B9LLmSchW6qK3tl/view?usp=sharing).
 <video poster="https://drive.google.com/uc?export=view&id=1-x2zbD3nns0d7pirXyCeFBxZvrBi1N_Z" width="960" height="512" controls>
-  <source src="https://drive.google.com/uc?export=view&id=1-Y3RvIw2Pvu9z9Xp9B9LLmSchW6qK3tl" type="video/mp4">Your browser does not support the video tag.
+  <source src="https://drive.google.com/uc?export=view&id=10601laxUz0luP7txebQKwDDB2IoO-Yiw" type="video/mp4">Your browser does not support the video tag.
 </video>
 
-A sample video from [CaltechPedestrian](http://www.vision.caltech.edu/Image_Datasets/CaltechPedestrians/)
+A sample video from [CaltechPedestrian](http://www.vision.caltech.edu/Image_Datasets/CaltechPedestrians/). Download [link](https://drive.google.com/file/d/1-m8f6VV2GzLaFMhmGfRdbPw1jRgkeCVN/view?usp=sharing).
 <video width="640" height="480" controls>
   <source src="https://drive.google.com/uc?export=view&id=1-m8f6VV2GzLaFMhmGfRdbPw1jRgkeCVN" type="video/mp4">Your browser does not support the video tag.
 </video>
