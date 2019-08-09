@@ -40,10 +40,9 @@ This approach is simple to implement, because it requires only a few extra all-r
 
 
 <figure>
-<center><img src="images/megatronlm/transformer.jpg" height="500" width="500"></center>
+<center><img src="images/megatronlm/transformer.jpg" height="400" width="400"></center>
 <center><b>Figure 3:</b> Model parallelism for a GPT-2 transformer layer.</center>
 </figure>
-
 
 
 **Performance**
@@ -51,12 +50,11 @@ This approach is simple to implement, because it requires only a few extra all-r
 To test the computational performance of our implementation, we consider GPT-2 models with four sets of parameters detailed in Table 1. To have consistent GEMM sizes in the self attention layer, the hidden size per attention head is kept constant at 96 while the number of heads and layers are varied to obtain configurations ranging from 1 billion to 8 billion parameters. The configuration with 1 billion parameters fits on a single GPU whereas the 8 billion parameter models requires 8-way model parallelism (8 GPUs). The original vocabulary size was 50,257, however, to have efficient GEMMs for the logit layer, it is critical for the vocabulary size to be a multiple of 128 as well as the number of model parallel GPUs. Since we study up to 8-way model parallelism, we pad the vocabulary such that it is divisible by 128x8=1024, resulting in a padded vocabulary size of 51,200.  We study both model and model+data parallel scalings. For the model parallel scaling, a fixed batch size of 8 is used across all configurations. Data parallel scaling is necessary for training many state of the art models which typically use a much larger global batch size. To this end, for the model+data parallel cases we fix the global batch size to 512 for all experiments which corresponds to 64-way data parallelism. 
 
 <figure>
-<center><img src="images/megatronlm/table_config.jpg" height="500" width="500"></center>
-<center><b>Figure 3:</b> Model parallelism for a GPT-2 transformer layer.</center>
+<center><img src="images/megatronlm/table_config.jpg" height="400" width="400"></center>
+<center><b>Table 1:</b> Parameters used for scaling studies.</center>
 </figure>
 
-
-
+<!--
 <table>
   <tr>
    <td><strong>Config</strong>
@@ -140,8 +138,8 @@ To test the computational performance of our implementation, we consider GPT-2 m
   </tr>
 </table>
 
-
 **Table 1:** Parameters used for scaling studies.
+-->
 
 All of our experiments are conducted on NVIDIA’s DGX SuperPod and we use up to 32 DGX-2H servers (a total of 512 Tesla V100 SXM3 32GB GPUs). This system is optimized for multi-node deep learning applications, with 300 GB/sec bandwidth between GPUs inside a server and 100 GB/sec of interconnect bandwidth between servers. Throughout this section, we will showcase weak scaling with respect to the model parameters for both model parallel and model+data parallel cases. Weak scaling is typically done with scaling the batch-size, however, this approach does not address training large models that do not fit on a single GPU and also convergence performance degrades for large batch sizes. In contrast, here we use weak scaling to train larger and larger models that were not possible otherwise. The baseline for all the scaling numbers is the first configuration in Table 1 running on a single GPU. 
 
@@ -152,6 +150,14 @@ Figure 4 shows scaling values for both model and model+data parallelism. We obse
 Finally, we study the effect of attention heads on model parallel scaling. To this end, we consider the 8.3 billion parameter configuration with 8-way model parallelism and vary the number of heads from 16 to 32. The results are presented in Table 2. As the number of attention heads increases, some of the GEMMS inside the self-attention layer become smaller and also the number of elements in the self attention softmax increases. This results in a slight decrease in scaling. Future research should be wary of this hyperparameter to design large transformer models that balance model performance and model efficiency.
 
 
+<figure>
+<center><img src="images/megatronlm/table_config.jpg" height="400" width="400"></center>
+<center><b>Table 2:</b> Effect of number of attention heads on scaling.</center>
+</figure>
+
+
+
+<!--
 <table>
   <tr>
    <td>Config
@@ -191,8 +197,8 @@ Finally, we study the effect of attention heads on model parallel scaling. To th
   </tr>
 </table>
 
-
 **Table 2:** Effect of number of attention heads on scaling.
+-->
 
 **GPT-2 Training**
 
