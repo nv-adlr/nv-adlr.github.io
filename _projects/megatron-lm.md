@@ -14,8 +14,7 @@ In this work, we implement a simple and efficient model parallel approach by mak
 Our experiments are conducted on NVIDIA’s [DGX SuperPod](https://devblogs.nvidia.com/dgx-superpod-world-record-supercomputing-enterprise/). Without model parallelism, we can fit a baseline model of 1.2B parameters on a single V100 32GB GPU, and sustain 39 TeraFLOPS during the overall training process, which is 30% of the theoretical peak FLOPS for a single GPU in a DGX2-H server. Scaling the model to 8.3 billion parameters on 512 GPUs with 8-way model parallelism, we achieved up to **15.1 PetaFLOPS sustained performance** over the entire application and reached 76% scaling efficiency compared to the single GPU case. Figure 1 shows more detailed scaling results.
 
 
-
-
+![Testing Image](images/megatronlm/flops_scaling.jpg "How is the test")
 
 ![alt_text](images/2-blog0.png "image_tooltip")
 
