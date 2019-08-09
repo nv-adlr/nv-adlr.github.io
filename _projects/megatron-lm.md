@@ -15,7 +15,7 @@ Our experiments are conducted on NVIDIA’s [DGX SuperPOD](https://devblogs.nvid
 
 <figure>
 <center><img src="images/megatronlm/flops_scaling.jpg" height="550" width="550"></center>
-<center><b>Figure 1</b>: Model (blue) and model+data (green) parallel FLOPS as a function of number of GPUs. Model parallel (blue): up to 8-way model parallel weak scaling with approximately 1 billion parameters per GPU (e.g. 2 billion for 2 GPUs and 4 billion for 4 GPUs). Model+data parallel (green): similar configuration as model parallel combined with 64-way data parallel.</center>
+<center><b>Figure 1:</b> Model (blue) and model+data (green) parallel FLOPS as a function of number of GPUs. Model parallel (blue): up to 8-way model parallel weak scaling with approximately 1 billion parameters per GPU (e.g. 2 billion for 2 GPUs and 4 billion for 4 GPUs). Model+data parallel (green): similar configuration as model parallel combined with 64-way data parallel.</center>
 </figure>
 
 
@@ -25,7 +25,14 @@ The typical paradigm for training models has made use of weak scaling approaches
 
 We take advantage of the structure of transformer networks to create a simple model parallel implementation by adding a few synchronization primitives. A transformer layer consists of a self attention block followed by a two-layer multi-layer perceptron (MLP). We introduce model parallelism in both of these blocks separately. We start by detailing the MLP block as shown in Figure 2a. This block consists of two GEMMs with a [GeLU](https://arxiv.org/pdf/1606.08415.pdf) nonlinearity in between followed by a dropout layer. We partition the first GEMM in a column parallel fashion. This allows the GeLU nonlinearity to be independently applied to the output of each partitioned GEMM. The second GEMM in the block is parallelized along its rows and takes the output of the GeLU layer directly without requiring any communication. The output of the second GEMM is then reduced across the GPUs before passing the output to the dropout layer. This approach splits both GEMMs in the MLP block across GPUs and requires only a single all-reduce operation in the forward pass (**_g_ ** operator) and a single all-reduce in the backward pass (**_f _** operator). 
 
-**Figure 2:** (a): MLP and (b): self attention blocks of transformer. **_f_** and **_g_** are conjugate, **_f_** is an **identity** operator in the forward pass and **all-reduce** in the backward pass while **_g_** is an **all-reduce** in forward and **identity** in backward.
+
+
+<figure>
+<center><img src="images/megatronlm/MLP_SelfAttention.jpg" height="550" width="550"></center>
+<center><b>Figure 2:</b> (a): MLP and (b): self attention blocks of transformer. <b>_f_</b> and <b>_g_</b> are conjugate, <b>_f_</b> is an <b>identity</b> operator in the forward pass and <b>all-reduce</b> in the backward pass while <b>_g_</> is an <b>all-reduce</b> in forward and <b>identity</b> in backward.</center>
+</figure>
+
+
 
 As shown in Figure 2b, for the self attention block we exploit inherent parallelism in the multihead attention operation, partitioning the GEMMs associated with key (K), query (Q), and value (V) in a column parallel fashion such that the matrix multiply corresponding to one attention head is done locally on one GPU. This allows us to split per attention head parameters and workload across the GPUs, and doesn’t require any immediate communication to complete the self-attention. The subsequent GEMM from the output linear layer (after self attention) is parallelized along its rows and takes the output of the parallel attention layer directly, without requiring communication between the GPUs. This approach for both the MLP and self attention layer fuses groups of two GEMMS, eliminates a synchronization point in between, and results in better scaling performance. This enables us to perform all GEMMs in a simple transformer layer using only two all reduces in the forward path and two in the backward path (see Figure 3). Lastly, the output logit layer is also partitioned along the vocabulary dimension, and to avoid a massive all-gather across the vocabulary dimension, we fuse this layer with the cross entropy loss. 
 
