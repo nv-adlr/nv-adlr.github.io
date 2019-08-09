@@ -14,7 +14,7 @@ In this work, we implement a simple and efficient model parallel approach by mak
 Our experiments are conducted on NVIDIA’s [DGX SuperPOD](https://devblogs.nvidia.com/dgx-superpod-world-record-supercomputing-enterprise/). Without model parallelism, we can fit a baseline model of 1.2B parameters on a single V100 32GB GPU, and sustain 39 TeraFLOPS during the overall training process, which is 30% of the theoretical peak FLOPS for a single GPU in a DGX2-H server. Scaling the model to 8.3 billion parameters on 512 GPUs with 8-way model parallelism, we achieved up to **15.1 PetaFLOPS sustained performance** over the entire application and reached 76% scaling efficiency compared to the single GPU case. Figure 1 shows more detailed scaling results.
 
 <figure>
-<center><img src="images/megatronlm/flops_scaling.jpg" height="550" width="550"></center>
+<center><img src="images/megatronlm/flops_scaling.jpg" height="500" width="500"></center>
 <center><b>Figure 1:</b> Model (blue) and model+data (green) parallel FLOPS as a function of number of GPUs. Model parallel (blue): up to 8-way model parallel weak scaling with approximately 1 billion parameters per GPU (e.g. 2 billion for 2 GPUs and 4 billion for 4 GPUs). Model+data parallel (green): similar configuration as model parallel combined with 64-way data parallel.</center>
 </figure>
 
@@ -23,13 +23,13 @@ Our experiments are conducted on NVIDIA’s [DGX SuperPOD](https://devblogs.nvid
 
 The typical paradigm for training models has made use of weak scaling approaches and distributed data parallelism to scale training batch size with number of GPUs. This approach allows the model to train on larger datasets, but has the constraint that all parameters must fit on a single GPU. Model parallel training can overcome this limitation by partitioning the model across multiple GPUs. Several general purpose model parallel frameworks such as [gPipe](https://arxiv.org/abs/1811.06965) and [Mesh-TensorFlow](https://arxiv.org/abs/1811.02084) have been proposed recently. gPipe divides groups of layers across different processors while Mesh-TensorFlow employs inter-layer model parallelism. Our approach is conceptually similar to Mesh-TensorFlow, we focus on inter-layer parallelism and fuse GEMMs to reduce synchronization. However, we only make a few targeted modifications to existing PyTorch transformer implementations to employ model parallelism for training large transformers. Our approach is simple, does not require any new compiler or code re-wiring for model parallelism, and can be fully implemented with insertion of few simple primitives (**_f_** and **_g_** operators in Figure 2) as described in the remainder of this section.
 
-We take advantage of the structure of transformer networks to create a simple model parallel implementation by adding a few synchronization primitives. A transformer layer consists of a self attention block followed by a two-layer multi-layer perceptron (MLP). We introduce model parallelism in both of these blocks separately. We start by detailing the MLP block as shown in Figure 2a. This block consists of two GEMMs with a [GeLU](https://arxiv.org/pdf/1606.08415.pdf) nonlinearity in between followed by a dropout layer. We partition the first GEMM in a column parallel fashion. This allows the GeLU nonlinearity to be independently applied to the output of each partitioned GEMM. The second GEMM in the block is parallelized along its rows and takes the output of the GeLU layer directly without requiring any communication. The output of the second GEMM is then reduced across the GPUs before passing the output to the dropout layer. This approach splits both GEMMs in the MLP block across GPUs and requires only a single all-reduce operation in the forward pass (<b>_g_</b> operator) and a single all-reduce in the backward pass (<b>f</b> operator). 
+We take advantage of the structure of transformer networks to create a simple model parallel implementation by adding a few synchronization primitives. A transformer layer consists of a self attention block followed by a two-layer multi-layer perceptron (MLP). We introduce model parallelism in both of these blocks separately. We start by detailing the MLP block as shown in Figure 2a. This block consists of two GEMMs with a [GeLU](https://arxiv.org/pdf/1606.08415.pdf) nonlinearity in between followed by a dropout layer. We partition the first GEMM in a column parallel fashion. This allows the GeLU nonlinearity to be independently applied to the output of each partitioned GEMM. The second GEMM in the block is parallelized along its rows and takes the output of the GeLU layer directly without requiring any communication. The output of the second GEMM is then reduced across the GPUs before passing the output to the dropout layer. This approach splits both GEMMs in the MLP block across GPUs and requires only a single all-reduce operation in the forward pass (<b>_g_</b> operator) and a single all-reduce in the backward pass (<b>_f_</b> operator). 
 
 
 
 <figure>
-<center><img src="images/megatronlm/MLP_SelfAttention.jpg" height="550" width="550"></center>
-<center><b>Figure 2:</b> (a): MLP and (b): self attention blocks of transformer. <b>f</b> and <b>g</b> are conjugate, <b>f</b> is an <b>identity</b> operator in the forward pass and <b>all-reduce</b> in the backward pass while <b>g</b> is an <b>all-reduce</b> in forward and <b>identity</b> in backward.</center>
+<center><img src="images/megatronlm/MLP_SelfAttention.jpg" height="500" width="500"></center>
+<center><b>Figure 2:</b> (a): MLP and (b): self attention blocks of transformer. <b><i>f</i></b> and <b><i>g</i></b> are conjugate, <b><i>f</i></b> is an <b>identity</b> operator in the forward pass and <b>all-reduce</b> in the backward pass while <b><i>g</i></b> is an <b>all-reduce</b> in forward and <b><i>identity</i></b> in backward.</center>
 </figure>
 
 
@@ -38,14 +38,23 @@ As shown in Figure 2b, for the self attention block we exploit inherent parallel
 
 This approach is simple to implement, because it requires only a few extra all-reduce operations be added to the forward and backward pass. It doesn’t require a compiler, and is orthogonal to the kind of pipeline model parallelism advocated by approaches such as gPipe.
 
-![alt_text](images/2-blog3.png "image_tooltip")
+
+<figure>
+<center><img src="images/megatronlm/transformer.jpg" height="500" width="500"></center>
+<center><b>Figure 3:</b> Model parallelism for a GPT-2 transformer layer.</center>
+</figure>
 
 
-**Figure 3**: Model parallelism for a GPT-2 transformer layer.
 
 **Performance**
 
 To test the computational performance of our implementation, we consider GPT-2 models with four sets of parameters detailed in Table 1. To have consistent GEMM sizes in the self attention layer, the hidden size per attention head is kept constant at 96 while the number of heads and layers are varied to obtain configurations ranging from 1 billion to 8 billion parameters. The configuration with 1 billion parameters fits on a single GPU whereas the 8 billion parameter models requires 8-way model parallelism (8 GPUs). The original vocabulary size was 50,257, however, to have efficient GEMMs for the logit layer, it is critical for the vocabulary size to be a multiple of 128 as well as the number of model parallel GPUs. Since we study up to 8-way model parallelism, we pad the vocabulary such that it is divisible by 128x8=1024, resulting in a padded vocabulary size of 51,200.  We study both model and model+data parallel scalings. For the model parallel scaling, a fixed batch size of 8 is used across all configurations. Data parallel scaling is necessary for training many state of the art models which typically use a much larger global batch size. To this end, for the model+data parallel cases we fix the global batch size to 512 for all experiments which corresponds to 64-way data parallelism. 
+
+<figure>
+<center><img src="images/megatronlm/table_config.jpg" height="500" width="500"></center>
+<center><b>Figure 3:</b> Model parallelism for a GPT-2 transformer layer.</center>
+</figure>
+
 
 
 <table>
