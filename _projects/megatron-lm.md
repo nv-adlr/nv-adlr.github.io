@@ -199,7 +199,7 @@ Figure 5 shows validation perplexity as a function of number of epochs for diffe
 
 To analyze the performance of training large language models, we compute perplexity on the [wikitext-103 dataset](https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-v1.zip) and cloze-style prediction accuracy on the [Lambada dataset](https://github.com/cybertronai/bflm/blob/master/lambada_test.jsonl). As expected, the wikitext perplexity decreases and lambada accuracy increases with the growth of the model size (Table 3). At a respective wikitext perplexity of 17.7 and 17.4 both our 2.5B and 8.3B models surpass the previous state of the art perplexity of 18.3 set by [transformer-xl](https://arxiv.org/abs/1901.02860) model. We describe our evaluation methodologies below; however, more details are available in [our github repository](https://github.com/nvidia/megatron-lm).
 
-
+<--
 <table>
   <tr>
    <td><strong>Model Size</strong>
@@ -272,7 +272,13 @@ To analyze the performance of training large language models, we compute perplex
    </td>
   </tr>
 </table>
-
+-->
+| Model Size | Number of Layers | Hidden Size | Attention Heads | Wikitext (Perplexity ↓) | Lambada (Accuracy ↑) |
+|:----------:|:----------------:|:-----------:|:---------------:|:-----------------------:|:--------------------:|
+|    345 M   |        24        |     1024    |        16       |          24.21          |         55.04        |
+|    775 M   |        36        |     1280    |        16       |          20.44          |         58.86        |
+|    2.5 B   |        54        |     1920    |        20       |          17.77          |         63.26        |
+|    8.3 B   |        72        |     3072    |        24       |          17.41          |         63.11        |
 
 **Table 3**: Zero-shot evaluation results for wikitext perplexity (lower is better) and Lambada cloze accuracy (higher is better). Wikitext perplexity surpasses previous state of the art results (18.3) set by transformer-xl.
 
