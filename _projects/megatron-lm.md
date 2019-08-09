@@ -158,11 +158,9 @@ Finally, we study the effect of attention heads on model parallel scaling. To th
 
 
 <figure>
-<center><img src="images/megatronlm/table_config.jpg" height="400" width="400"></center>
+<center><img src="images/megatronlm/table_attention_heads.jpg" height="400" width="400"></center>
 <center><b>Table 2:</b> Effect of number of attention heads on scaling.</center>
 </figure>
-
-
 
 <!--
 <table>
