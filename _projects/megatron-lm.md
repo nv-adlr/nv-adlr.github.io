@@ -15,7 +15,9 @@ Our experiments are conducted on NVIDIA’s [DGX SuperPOD](https://devblogs.nvid
 
 
 <center><img src="images/megatronlm/flops_scaling.jpg"></center>
-<center>This is an image</center>
+<center>Model (blue) and model+data (green) parallel FLOPS as a function of number of GPUs. Model parallel (blue): up to 8-way model parallel weak scaling with approximately 1 billion parameters per GPU (e.g. 2 billion for 2 GPUs and 4 billion for 4 GPUs). Model+data parallel (green): similar configuration as model parallel combined with 64-way data parallel.</center>
+
+
 
 ![alt_text](images/megatronlm/flops_scaling.jpg "This is the caption")
 
