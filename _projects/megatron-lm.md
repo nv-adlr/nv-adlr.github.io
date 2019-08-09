@@ -40,7 +40,7 @@ This approach is simple to implement, because it requires only a few extra all-r
 
 
 <figure>
-<center><img src="images/megatronlm/transformer.jpg" height="300" width="300"></center>
+<center><img src="images/megatronlm/transformer.jpg" height="150" width="150"></center>
 <center><b>Figure 3:</b> Model parallelism for a GPT-2 transformer layer. </center>
 </figure>
 
