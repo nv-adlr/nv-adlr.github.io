@@ -41,7 +41,7 @@ This approach is simple to implement, because it requires only a few extra all-r
 
 <figure>
 <center><img src="images/megatronlm/transformer.jpg" height="400" width="400"></center>
-<center><b>Figure 3:</b> Model parallelism for a GPT-2 transformer layer.</center>
+<center><b>Figure 3:</b> Model parallelism for a GPT-2 transformer layer. </center>
 </figure>
 
 
@@ -154,15 +154,15 @@ Figure 4 shows scaling values for both model and model+data parallelism. We obse
 
 
 <figure>
-<center><img src="images/megatronlm/weak_scaling.jpg" height="500" width="500"></center>
-<center><b>Figure 4:</b>Model (left) and model+data (right) parallel weak scaling with number of GPUs.</center>
+<center><img src="images/megatronlm/weak_scaling.jpg" height="400" width="400"></center>
+<center><b>Figure 4:</b> Model (left) and model+data (right) parallel weak scaling with number of GPUs.</center>
 </figure>
 
 Finally, we study the effect of attention heads on model parallel scaling. To this end, we consider the 8.3 billion parameter configuration with 8-way model parallelism and vary the number of heads from 16 to 32. The results are presented in Table 2. As the number of attention heads increases, some of the GEMMS inside the self-attention layer become smaller and also the number of elements in the self attention softmax increases. This results in a slight decrease in scaling. Future research should be wary of this hyperparameter to design large transformer models that balance model performance and model efficiency.
 
 
 <figure>
-<center><img src="images/megatronlm/table_attention_heads.jpg" height="400" width="400"></center>
+<center><img src="images/megatronlm/table_attention_heads.jpg" height="250" width="250"></center>
 <center><b>Table 2:</b> Effect of number of attention heads on scaling.</center>
 </figure>
 
@@ -214,8 +214,8 @@ Finally, we study the effect of attention heads on model parallel scaling. To th
 To train our GPT2 model we created a 37 GB _WebText_ dataset downloaded from _Reddit_ that is similar to the webtext dataset described in the original GPT-2 paper. To obtain the dataset, we leveraged the publicly available [OpenWebText](https://github.com/eukaryote31/openwebtext) codebase. Utilizing their pre-downloaded URLs we performed additional filtering to remove malformed, short or duplicate urls. To clean our downloaded content we used the [ftfy](https://ftfy.readthedocs.io/en/latest/) library and then removed non-english content using the [langdetect](https://pypi.org/project/langdetect/) library. We further cleaned our dataset by removing Wikipedia content and removing duplicates by using LSH filtering with a jaccard index of 0.9. The dataset ended up with 8.1 million URLs. For training, we randomly split the WebText dataset into a 95:5 ratio to obtain training and validation sets, respectively. We consider 4 model sizes: 345 million, 775 million, 2.5 billion, and 8.3 billion. 345 and 775 million  parameter models are similar to the ones used in GPT-2, and use (x) attention heads. 2.5 billion and 8.3 billion parameters models are detailed in Table 1, except that for the 8.3 billion parameter case, we use 24 attention heads. Learning rate in all cases is set to 1.5x10-4 with cosine annealing and 3000 iteration warmup. A gaussian distribution with zero mean and standard deviation of 0.02 is used for weight initialization and we scale the weights of residual layers by $$\frac{1}{\sqrt{2l}}$$ where $$l$$ is the number of layers. In all cases, a dropout of 0.1 is used.
 
 <figure>
-<center><img src="images/megatronlm/validation_perp.jpg" height="500" width="500"></center>
-<center><b>Figure 5:</b>Validation perplexity over a subset of training. The 8.3B model is stopped early after overfitting on our 37GB dataset.</center>
+<center><img src="images/megatronlm/validation_perp.jpg" height="450" width="450"></center>
+<center><b>Figure 5:</b> Validation perplexity over a subset of training. The 8.3B model is stopped early after overfitting on our 37GB dataset.</center>
 </figure>
 
 
