@@ -42,7 +42,14 @@ To test the computational performance of our implementation, we consider GPT-2 m
 
 
 <table>
-  <tr>
+  <col align="center">
+  <col align="center">
+  <col align="center">
+  <col align="center">
+  <col align="center">
+  <col align="center">
+  <col align="center">
+  <tr bgcolor="#E7B4AE">
    <td><strong>Config</strong>
    </td>
    <td><strong>Hidden size</strong>
@@ -58,7 +65,7 @@ To test the computational performance of our implementation, we consider GPT-2 m
    <td><strong>Model+data parallel GPUs</strong>
    </td>
   </tr>
-  <tr>
+  <tr bgcolor="#FFF2D8">
    <td>1
    </td>
    <td>1536
@@ -74,7 +81,7 @@ To test the computational performance of our implementation, we consider GPT-2 m
    <td>64
    </td>
   </tr>
-  <tr>
+  <tr bgcolor="#CAD9FA">
    <td>2
    </td>
    <td>1920
@@ -90,7 +97,7 @@ To test the computational performance of our implementation, we consider GPT-2 m
    <td>128
    </td>
   </tr>
-  <tr>
+  <tr bgcolor="#FFF2D8">
    <td>3
    </td>
    <td>2304
@@ -106,7 +113,7 @@ To test the computational performance of our implementation, we consider GPT-2 m
    <td>256
    </td>
   </tr>
-  <tr>
+  <tr bgcolor="#CAD9FA">
    <td>4
    </td>
    <td>3072
