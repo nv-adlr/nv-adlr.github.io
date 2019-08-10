@@ -45,7 +45,7 @@ We take advantage of the structure of transformer networks to create a simple mo
 </div>
 
 <p>
-<center><img src="images/megatronlm/MLP_SelfAttention.jpg" width="750"></center>
+<center><img src="images/megatronlm/MLP_SelfAttention.jpg" width="550"></center>
 <center><b>Figure 2: </b>(a): MLP and (b): self attention blocks of transformer. <b><i>f</i></b> and <b><i>g</i></b> are conjugate, <b><i>f</i></b> is an <b>identity</b> operator in the forward pass and <b>all-reduce</b> in the backward pass while <b><i>g</i></b> is an <b>all-reduce</b> in forward and <b><i>identity</i></b> in backward.</center>
 </p>
 
