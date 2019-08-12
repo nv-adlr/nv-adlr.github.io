@@ -148,9 +148,6 @@ To analyze the performance of training large language models, we compute perplex
 <div style="text-align: justify">
 <p>
 In this work, we built the world's largest transformer based language model on top of existing deep learning hardware, software, and models. In doing so, we successfully surpassed the limitations posed by traditional single GPU training by implementing a simple and efficient model parallel approach with only a few targeted modifications to the existing PyTorch transformer implementations. We efficiently train an 8.3 billion parameter language model (24x and 5.6x larger than the size of BERT and GPT-2, respectively) on 512 NVIDIA V100 GPUs with 8-way model parallelism and achieve up to 15.1 PetaFLOPS sustained over the entire application. With weak scaling, we found that increasingly large transformer models can be trained in a similar amount of time compared to their smaller counterparts and can demonstrably improve performance. However, as we showed in our work, NLP still requires suitable datasets, problems, and techniques to properly train these large language models without overfitting. We open source our work as a catalyst so that the community may build upon our efforts and address these problems.
-<p>
-May Your Learning Be Deep and (Un)supervised ...
-</p>
 </p>
 </div>
 
