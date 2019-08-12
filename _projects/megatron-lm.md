@@ -1,7 +1,7 @@
 ---
 title: "MegatronLM: Training Billion+ Parameter Language Models Using GPU Model Parallelism"
 collection: projects
-author: Jared Casper, Patrick Legresley, Mohammad Shoeybi, Mostofa Patwary, Raul Puri, Bryan Catanzaro
+author: Jared Casper, Patrick Legresley, Mostofa Patwary, Raul Puri, Mohammad Shoeybi, Bryan Catanzaro
 permalink: /MegatronLM
 excerpt: 'We train an 8.3 billion parameter transformer language model with 8-way model parallelism and 64-way data parallelism on 512 GPUs, making it the **largest transformer based language model ever trained at 24x the size of BERT and 5.6x the size of GPT-2**'
 date: 2019-08-13
