@@ -113,18 +113,25 @@ Finally, we study the effect of attention heads on model parallel scaling. To th
 
 <div style="text-align: justify">
 <p>
-To train our GPT-2 model we created a 37 GB _WebText_ dataset downloaded from _Reddit_ that is similar to the webtext dataset described in the original GPT-2 paper. To obtain the dataset, we leveraged the publicly available <a href="https://github.com/eukaryote31/openwebtext">OpenWebText</a> codebase. Utilizing their pre-downloaded URLs we performed additional filtering to remove malformed, short or duplicate urls. To clean our downloaded content we used the <a href="https://ftfy.readthedocs.io/en/latest/">ftfy</a> library and then removed non-english content using the <a href="https://pypi.org/project/langdetect/">langdetect</a> library. We further cleaned our dataset by removing Wikipedia content and removing duplicates by using <a href="https://github.com/mattilyra/LSH">LSH filtering</a> with a jaccard index of 0.9. The dataset ended up with 8.1 million URLs. For training, we randomly split the WebText dataset into a 95:5 ratio to obtain training and validation sets, respectively. We consider 4 model sizes: 345 million, 775 million, 2.5 billion, and 8.3 billion. 345 and 775 million  parameter models are similar to the ones used in GPT-2, and use 16 attention heads. 2.5 billion and 8.3 billion parameters models are detailed in Table 1, except that for the 8.3 billion parameter case, we use 24 attention heads. Learning rate in all cases is set to $1.5\times 10^{-4}$ with cosine annealing and 3000 iteration warmup. A gaussian distribution with zero mean and standard deviation of 0.02 is used for weight initialization and we scale the weights of residual layers by $\frac{1}{\sqrt{2l}}$ where $l$ is the number of layers. In all cases, a dropout of 0.1 is used.
+To train our GPT-2 model we created an aggregate 174GB dataset (~4.5x larger than WebText) consisting of <a href="https://github.com/NVIDIA/Megatron-LM#collecting-wikipedia-training-data">Wikipedia</a>, <a href="https://github.com/eukaryote31/openwebtext">OpenWebText</a>, <a href="https://github.com/rowanz/grover">RealNews</a>, and <a href="https://arxiv.org/abs/1806.02847">CC-Stories</a>. We performed additional filtering to remove malformed, short or duplicate documents less than 128 tokens. To clean the datasets we used the <a href="https://ftfy.readthedocs.io/en/latest/">ftfy</a> library and then removed non-english content using the <a href="https://pypi.org/project/langdetect/">langdetect</a> library. We further cleaned our dataset by removing WikiText test-set content and remove duplicates by using <a href="https://github.com/mattilyra/LSH">LSH filtering</a> with a jaccard index of 0.7. The dataset ended up with approximately 40 million documents. For training, we randomly split the WebText dataset into a 29:1 ratio to obtain training and validation sets, respectively.
 </p>
 </div>
 
+<div style="text-align: justify">
 <p>
-<center><img src="images/megatronlm/validation_perp.jpg" width="550"></center>
-<center><b>Figure 5:</b> Validation perplexity over a subset of training. The 8.3B model is stopped early after overfitting on our 37GB dataset.</center>
+We consider training 3 model sizes: 355 million, 2.5 billion, and 8.3 billion. The 355 million  parameter model is similar to the one used in GPT-2, and uses 16 attention heads. The 2.5 billion and 8.3 billion parameters models are detailed in Table 1, except that for the 8.3 billion parameter case, we use 24 attention heads. Learning rates in all cases are set to $1.5\times 10^{-4}$ with single cycle cosine annealing and 3000 iteration warmup. We clamp our learning rate to a minimum value of $1\times 10^{-5}$. A gaussian distribution with zero mean and standard deviation of 0.02 is used for weight initialization and we scale the weights of layers preceding residual connections by $\frac{1}{\sqrt{2N}}$ where $N$ is the number of layers. In all cases, a dropout of 0.1 is used.
+</p>
+</div>
+
+
+<p>
+<center><img src="images/megatronlm/validation_perp.png" width="550"></center>
+<center><b>Figure 5:</b> Validation perplexity over a subset of training. The 8.3B model surpasses all other models and continues to drop at the end of training.</center>
 </p>
 
 <div style="text-align: justify">
 <p>
-Figure 5 shows validation perplexity as a function of number of epochs for different model sizes. At validation time we find empirically that larger models lead to lower validation perplexities (Figure 5). However, we find that our largest 8.3B parameter language model begins to overfit after ~6 epochs of training, where an epoch is defined as 15,200 iterations: the number of iterations required to train over the entire 37GB corpus. We suspect that this can be mitigated by using larger scale datasets similar to those used in recent papers such as <a href="https://arxiv.org/abs/1906.08237">XLNet</a> and <a href="https://arxiv.org/abs/1907.11692">RoBERTa</a>.
+Figure 5 shows validation perplexity as a function of number of training iterations for different model sizes. At validation time we find empirically that larger models lead to lower validation perplexities (Figure 5). Our 8.3B model achievs a validation perplexity of 9.27. An epoch is defined as 68,507 iterations to train over the entire 174GB corpus.
 </p>
 </div>
 
@@ -133,13 +140,13 @@ Figure 5 shows validation perplexity as a function of number of epochs for diffe
 
 <div style="text-align: justify">
 <p>
-To analyze the performance of training large language models, we compute perplexity on the <a href="https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-v1.zip">wikitext-103 dataset</a> and cloze-style prediction accuracy on the <a href="https://github.com/cybertronai/bflm/blob/master/lambada_test.jsonl">Lambada dataset</a>. As expected, the wikitext perplexity decreases and lambada accuracy increases with the growth of the model size (Table 3). At a respective wikitext perplexity of 17.7 and 17.4 both our 2.5B and 8.3B models surpass the previous state of the art perplexity of 18.3 set by <a href="https://arxiv.org/abs/1901.02860">transformer-xl</a> model. We describe our evaluation methodologies below; however, more details are available in <a href="https://github.com/nvidia/megatron-lm">our github repository</a>.
+To analyze the performance of training large language models, we compute perplexity on the <a href="https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-103-v1.zip">WikiText-103 dataset</a> and cloze-style prediction accuracy on the <a href="https://github.com/cybertronai/bflm/blob/master/lambada_test.jsonl">LAMBADA dataset</a>. Earlier we made sure to remove WikiText test set content to avoid leakage. Our resulting dataset has a WikiText 8-gram overlap of 10% which is similar to the 9% 8-gram overlap between the WikiText-103 train and test sets. As expected, the WikiText perplexity decreases and LAMBADA accuracy increases with the growth of the model size (Table 3). At a respective WikiText perplexity of 12.68 and 10.81 both our 2.5B and 8.3B models surpass the previous state of the art perplexity of 16.43 set by <a href="https://arxiv.org/abs/1904.08378">Krause et. al</a>. Our models achieve 61.52% and 66.51% accuracy on LAMBADA even without any stopword filtration, surpassing <a href="https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">Radford et. al</a>. We describe our evaluation methodologies below; however, more details are available in <a href="https://github.com/nvidia/megatron-lm">our github repository</a>.
 </p>
 </div>
 
 <p>
-<center><img src="images/megatronlm/table_eval_results.jpg" width="650"></center>
-<center><b>Table 3:</b> Zero-shot evaluation results for wikitext perplexity (lower is better) and Lambada cloze accuracy (higher is better). Wikitext perplexity surpasses previous state of the art results (18.3) set by transformer-xl.</center>
+<center><img src="images/megatronlm/table_eval_results.png" width="650"></center>
+<center><b>Table 3:</b> Zero-shot evaluation results for WikiText perplexity (lower is better) and LAMBADA cloze accuracy (higher is better). * <a href="https://arxiv.org/abs/1904.08378">Dynamic Evaluation of Transformer Language Models, Krause et. al., 2019</a>. ** <a href="https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf">Language Models are Unsupervised Multitask Learners, Radford et. al., 2019</a>. </center>
 </p>
 
 
@@ -147,21 +154,23 @@ To analyze the performance of training large language models, we compute perplex
 
 <div style="text-align: justify">
 <p>
-In this work, we built the world's largest transformer based language model on top of existing deep learning hardware, software, and models. In doing so, we successfully surpassed the limitations posed by traditional single GPU training by implementing a simple and efficient model parallel approach with only a few targeted modifications to the existing PyTorch transformer implementations. We efficiently train an 8.3 billion parameter language model (24x and 5.6x larger than the size of BERT and GPT-2, respectively) on 512 NVIDIA V100 GPUs with 8-way model parallelism and achieve up to 15.1 PetaFLOPS sustained over the entire application. With weak scaling, we found that increasingly large transformer models can be trained in a similar amount of time compared to their smaller counterparts and can demonstrably improve performance. However, as we showed in our work, NLP still requires suitable datasets, problems, and techniques to properly train these large language models without overfitting. We open source our work so that the community may reproduce our efforts and extend them.
+In this work, we built the world's largest transformer based language model on top of existing deep learning hardware, software, and models. In doing so, we successfully surpassed the limitations posed by traditional single GPU training by implementing a simple and efficient model parallel approach with only a few targeted modifications to the existing PyTorch transformer implementations. We efficiently train an 8.3 billion parameter language model (24x and 5.6x larger than the size of BERT and GPT-2, respectively) on 512 NVIDIA V100 GPUs with 8-way model parallelism and achieve up to 15.1 PetaFLOPS sustained over the entire application. With weak scaling, we found that increasingly large transformer models can be trained in a similar amount of time compared to their smaller counterparts and can demonstrably improve performance. Our 8.3B model exemplifies this by setting new state of the art results for both WikiText-103 (10.81 perplexity) and LAMBADA (66.51% accuracy).  We open source our work so that the community may reproduce our efforts and extend them.
 </p>
 </div>
+
+**_Update 9/5/2019_: Larger dataset and stricter lambada formulation**
 
 
 **Appendix**
 
 
-**Wikitext Perplexity:**
+**WikiText Perplexity:**
 
 <div style="text-align: justify">
 <p>
 Perplexity is the exponentiation of the average cross entropy of a corpus. This makes it a natural evaluation metric for language models which represent a probability distribution over entire sentences or texts. We make note of the detailed methods we use to compute perplexity for the sake of reproducibility.
 $$ PPL= \exp\left(-\frac{1}{T_o}\sum_{t}^{T} \text{log}\;P(t\vert 0:t-1)\right)$$
-The wikitext-103 test corpus already comes pre-tokenized with word-level tokens that prior work has used to compute perplexity. To evaluate model perplexity fairly and consistently, we normalize by the original number of word-level tokens, $T_o$, rather than the number of subword tokens, $T$, that were present in the tokenized data. Additionally, to alleviate distributional mismatch caused by wikitext processing artifacts, we first preprocess the wikitext-103 test dataset with invertible de-tokenizers to remove various artifacts related to punctuation and whitespace. The value of $T_o$ is calculated before this preprocessing. For wikitext-103's test set we arrive at $T_o=245566$ and $T=270329$. Lastly, to accommodate the transformer’s fixed window input size and inability to attend to all tokens [0, t-1], we utilize a sliding window approach with a size of 1024 tokens, and a stride of 32 tokens to compute perplexity. 
+The WikiText-103 test corpus already comes pre-tokenized with word-level tokens that prior work has used to compute perplexity. To evaluate model perplexity fairly and consistently, we normalize by the original number of word-level tokens, $T_o$, rather than the number of subword tokens, $T$, that were present in the tokenized data. Additionally, to alleviate distributional mismatch caused by WikiText processing artifacts, we first preprocess the WikiText-103 test dataset with invertible de-tokenizers to remove various artifacts related to punctuation and whitespace. The value of $T_o$ is calculated before this preprocessing. For WikiText-103's test set we arrive at $T_o=245566$ and $T=270329$. Lastly, to accommodate the transformer’s fixed window input size and inability to attend to all tokens [0, t-1], we utilize a sliding window approach with a size of 1024 tokens, and a stride of 32 tokens to compute perplexity. 
 </p>
 </div>
 
@@ -170,9 +179,10 @@ The wikitext-103 test corpus already comes pre-tokenized with word-level tokens 
 
 <div style="text-align: justify">
 <p>
-Cloze-style datasets like LAMBADA are designed to measure a model's ability to operate in and reason about long-term contexts. Handling long term contexts is crucial for state of the art language models to solve problems like long-form generation and document-based question answering.  Cloze-style reading comprehension uses a context of word tokens $x=x_{1:t}$ with one token $x_j$ masked; the models objective is to correctly predict the value $y$ of the missing $j^{\text{th}}$ token based on its understanding of the surrounding context. LAMBADA uses cloze-style reading comprehension to test generative left-to-right language models by constructing examples of 4-5 sentences where the last word in the context $x_t$ is masked. Our models utilize subword units, so for our version of LAMBADA evaluation we utilize the raw, unprocessed LAMBADA dataset, and mask $x_t$ corresponding to the last subword token of the samples in the dataset as opposed to the last word of the samples. We report the accuracy of our model based on the number of times that $y = \text{argmax}\;P(x_t\vert x_{0:t−1})$ divided by the total number of examples.
+Cloze-style datasets like LAMBADA are designed to measure a model's ability to operate in and reason about long-term contexts. Handling long term contexts is crucial for state of the art language models to solve problems like long-form generation and document-based question answering.  Cloze-style reading comprehension uses a context of word tokens $x=x_{1:t}$ with one token $x_j$ masked; the model's objective is to correctly predict the value $y$ of the missing $j^{\text{th}}$ token based on its understanding of the surrounding context. LAMBADA uses cloze-style reading comprehension to test generative left-to-right language models by constructing examples of 4-5 sentences where the last word in the context $x_t$ is masked. Our models utilize subword units, so for our version of LAMBADA evaluation we utilize the raw, unprocessed LAMBADA dataset, and require that our model predict the multiple $x_t$ subwords that make up the last word token. We use teacher forcing in our predictions, and consider an answer correct only when all output subword predictions are correct. This formulation is equivalent to the original task of word prediction.
 </p>
 </div>
+
 
 
  
