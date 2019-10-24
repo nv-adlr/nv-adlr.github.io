@@ -8,8 +8,9 @@ date: 2019-10-23
 ---
 
 <p align="center" markdown="1">
-![Mellotron](images/mellotron_logo){:width="70%"}
+![Mellotron](images/mellotron_logo.png){:width="70%"}
 </p>
+
 
 ## *Rafael Valle, Jason Li*, Ryan Prenger, and Bryan Catanzaro
 
