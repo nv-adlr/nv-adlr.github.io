@@ -5,7 +5,7 @@ permalink: /publication/partialconv-inpainting
 excerpt: ''
 date: 2018-12-09
 venue: 'ECCV 2018'
-paperurl: 'https://eccv2018.org/openaccess/content_ECCV_2018/papers/Guilin_Liu_Image_Inpainting_for_ECCV_2018_paper.pdf'
+paperurl: 'https://arxiv.org/abs/1804.07723'
 citation: 'Guilin Liu, Fitsum A. Reda, Kevin J. Shih, Ting-Chun Wang, Andrew Tao, Bryan Catanzaro, Image Inpainting for Irregular Holes Using Partial Convolutions, Proceedings of the European Conference on Computer Vision (ECCV) 2018.'
 ---
 
@@ -26,29 +26,30 @@ Existing deep learning based image inpainting methods use a standard convolution
 ## Code
 [https://github.com/NVIDIA/partialconv](https://github.com/NVIDIA/partialconv)
 
-## Data
+## Data (NVIDIA Irregular Mask Dataset)
 
-### Training Mask
+### Training Set
 
 To train the network, please use random augmentation tricks including random translation, rotation, dilation and cropping to augment the dataset. For our training, we use threshold 0.6 to binarize the masks first and then use from 9 to 49 pixels dilation to randomly dilate the holes, followed by random translation, rotation and cropping.
 
-[https://www.dropbox.com/s/qp8cxqttta4zi70/irregular_mask.zip?dl=0](https://www.dropbox.com/s/qp8cxqttta4zi70/irregular_mask.zip?dl=0)
+[NVIDIA Irregular Mask Dataset: Training Set](https://www.dropbox.com/s/qp8cxqttta4zi70/irregular_mask.zip?dl=0)
 
 
-### Testing Mask
+### Testing Set
+The testing test covers different hole-to-image area ratios: (0.01, 0.1], (0.1, 0.2], (0.2, 0.3], (0.3, 0.4], (0.4, 0.5], (0.5, 0.6]. Each category contains 1000 masks with and without border constraints. In total, we have created 6 × 2 × 1000 = 12, 000 masks.
 
-[http://masc.cs.gmu.edu/wiki/uploads/partialconv/mask.zip](https://www.dropbox.com/s/01dfayns9s0kevy/test_mask.zip?dl=0)
+[NVIDIA Irregular Mask Dataset: Testing Set](https://www.dropbox.com/s/01dfayns9s0kevy/test_mask.zip?dl=0)
 
 
 ### Note and Reference
 
-If you find the dataset useful, please consider citing this page directly shown below instead of the data-downloading link:
+If you find the dataset useful, please consider citing this page directly shown below instead of the data-downloading link url:
 ```
-@inproceedings{nv_partialconv_maskdata,
+@inproceedings{nv_irregular_maskdata,
   title={NVIDIA Irregular Mask Dataset},
   author={NVIDIA},
   booktitle = {https://nv-adlr.github.io/publication/partialconv-inpainting}, 
-  year={2018}
+  year={2018},
 }
 ```
 
