@@ -30,12 +30,38 @@ Existing deep learning based image inpainting methods use a standard convolution
 
 ### Training Mask
 
+To train the network, please use random augmentation tricks including random translation, rotation, dilation and cropping to augment the dataset. For our training, we use threshold 0.6 to binarize the masks first and then use from 9 to 49 pixels dilation to randomly dilate the holes, followed by random translation, rotation and cropping.
+
 [https://www.dropbox.com/s/qp8cxqttta4zi70/irregular_mask.zip?dl=0](https://www.dropbox.com/s/qp8cxqttta4zi70/irregular_mask.zip?dl=0)
 
 
 ### Testing Mask
 
-[http://masc.cs.gmu.edu/wiki/uploads/partialconv/mask.zip](http://masc.cs.gmu.edu/wiki/uploads/partialconv/mask.zip)
+[http://masc.cs.gmu.edu/wiki/uploads/partialconv/mask.zip](https://www.dropbox.com/s/01dfayns9s0kevy/test_mask.zip?dl=0)
+
+
+### Note and Reference
+
+If you find the dataset useful, please consider citing this page directly shown below instead of the data-downloading link:
+```
+@inproceedings{nv_partialconv_maskdata,
+  title={NVIDIA Irregular Mask Dataset},
+  author={NVIDIA},
+  booktitle = {https://nv-adlr.github.io/publication/partialconv-inpainting}, 
+  year={2018}
+}
+```
+
+To cite our paper, please use the following:
+```
+@inproceedings{liu2018partialinpainting,
+   author    = {Guilin Liu and Fitsum A. Reda and Kevin J. Shih and Ting-Chun Wang and Andrew Tao and Bryan Catanzaro},
+   title     = {Image Inpainting for Irregular Holes Using Partial Convolutions},
+   booktitle = {The European Conference on Computer Vision (ECCV)},   
+   year      = {2018},
+}
+
+```
 
 
 ## Related Project
