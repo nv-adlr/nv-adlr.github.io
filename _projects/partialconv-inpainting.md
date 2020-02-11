@@ -47,7 +47,7 @@ If you find the dataset useful, please consider citing this page directly shown 
 ```
 @inproceedings{nv_irregular_maskdata,
   title={NVIDIA Irregular Mask Dataset},
-  author={NVIDIA},
+  author={Guilin Liu and Fitsum A. Reda and Kevin J. Shih and Ting-Chun Wang and Andrew Tao and Bryan Catanzaro},
   booktitle = {https://nv-adlr.github.io/publication/partialconv-inpainting}, 
   year={2018},
 }
