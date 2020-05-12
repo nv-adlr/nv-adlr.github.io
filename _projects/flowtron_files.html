@@ -1,0 +1,239 @@
+<style>
+div {
+  max-width: 800px;
+  min-width: 100px;
+  display: inline-block;
+}
+</style>
+
+<a name="sec1" href="https://drive.google.com/open?id=1_MtPpoTpXUiCwkqsfDhnqubKy4VNjrJu" target="_blank" style="color:#3cb371" style="color:#3cb371"><h3>4.2 Mean Opinion Score Comparison</h3></a>
+    <table border="0" width="33%" style="font-size:16px">
+    <tr>Flowtron has Mean Opinion Scores (MOS) comparable to state of the art text to speech models.</tr>
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">LJSpeech Ground Truth </th>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron </th>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Tacotron 2 </th>
+    </tr>
+    <tr>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1PA2w01ppIlCkCLafWqFGljCtb2BlJ6qw" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1adhAcOjq4RE2jQ4C0PoB1CI_qAOA4-D9" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=15IoFrVsETB0ChBGScD8_MLVxRUlXrzwq" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+    </table>
+<br><br>
+
+<a name="sec2" href="https://drive.google.com/open?id=1SNKdMqrmYkV8t92w3iE0crfJbDtGeTVx" target="_blank" style="color:#3cb371"><h3>4.3.1 Sampling the Prior ( Speech Variation )</h3></a>
+<div>With Flowtron we can control the amount of variation in speech by adjusting σ². Despite all the variability added by increasing σ², all the samples synthesized with Flowtron still produce high quality speech.<div>
+<table border="0" width="50%" style="font-size:16px">
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron σ²=0</th>  
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1_KnWVHb3MOt--CjPR2KDS50LGWxnZy_b" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1lAOipdnNWX1UfhEnJUw1mqTlkX9VBGe2" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1N176TeTCuF19oAQ4QZyqqGyvQ9vmmSGm" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron σ²=0.5</th>  
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1TQIKDpVxYUCsbyL1nnhsPm_VR-kfAQZg" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1W6gW-i0Onx-FylPE2VNv9SbCxrdMXQe3" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1xW1Adlv4nbM7_0kzU_oAjZ_R-eICUxad" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron σ²=1</th>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1ON-74g5asNnn6vtjX-COxUrU3hGRKEl_" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1Qh_TRNfMl4vEK6fjG5rIzQfF71GhsRdz" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1GVfNa4YtOE1hfw88Uk8wuE7yy43OlFnE" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Tacotron 2 p=0.5</th>  
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1ELLb99WT9ApgfaSc-edRCle29E0ymvJq" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1yeccH0tPOg0LCzvXCxUW8sClp_PK5hD6" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=10jK-nCfEWKtcc4Pp73KDD0_9cFQEb7m8" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+</table>
+<br><br>
+
+<a name="sec3" href="https://drive.google.com/open?id=1C06KoS2XDi8f8VGeO2KhesntOmq_fgMF" target="_blank" style="color:#3cb371"><h3>4.3.2 Sampling the Prior ( Interpolation between samples )</h3></a>
+<div>Flowtron model with speaker embeddings. We interpolate between two random z-vectors with the speaker Sally and the phrase <i>"It is well known that deep generative models have a rich latent space"</i>.</div>
+<table border="0" width="50%" style="font-size:16px">    
+    <tr>
+        <td></th>  
+        <td>1/100</td>
+        <td>33/100</td>
+        <td>66/100</td>
+        <td>100/100</td>
+    </tr>
+    
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron same speaker</th>  
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1nfh-3_6Yrb-iOG2XXKL6SJf9oICnI9f5" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1XVeYMo38sCNJThlSkW5RskarYW0jheLp" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1P7p74BTQnmEO4H4pTX0dOYecYRoCITG9" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1eP71ZT1Bo_kfjeBum3AjgGz7CgUPgdWD" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+</table>
+<br>
+<table border="0" width="50%" style="font-size:16px">
+    <tr>Flowtron model without speaker embeddings. We interpolate between z-vectors producing speech from Sally and Helen with the phrase <i>"We are testing this model"</i>.</tr>
+    <tr>
+        <td></td>
+        <td>100% Helen</td>  
+        <td>66% Helen 33% Sally</td>
+        <td>33% Helen 66% Sally</td>
+        <td>100% Sally</td>
+    </tr>
+    
+    <tr>   
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron different speakers</th>  
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1vDHxxLd_1L2zNgG5MN1IJe5HC-ys4QNM" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1OiJ2-Hda8DXQhCwaSVU3zsCaSeDvzG5h" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1ycSj7H0osElBI8A-8o5Y59k_f4klClce" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1jq8UgsrnlwZaYbY1C64an9yG5Rf4ADCD" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+</table>
+
+<br><br>
+<a name="sec4" href="https://drive.google.com/open?id=1F3qlMpd_rVJv7t9s2vEm873u8Sk586jG" target="_blank" style="color:#3cb371"><h3>4.4.1 Sampling the Posterior ( Seen speaker without alignments )</h3></a>
+<div> We compare Sally samples from Flowtron and Tacotron 2 GST generated by conditioning on the posterior computed over 30 Helen samples with the highest variance in fundamental frequency. The goal is to make a monotonic speaker sound expressive.
+<table border="0" width="50%" style="font-size:16px">
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron</th>  
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1upzjf6E3QAiAeAqqvx8cvuyRN5Sd-Uh1" type="audio/mpeg">audio not supported</audio></td>       
+    </tr>
+
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron Style Transfer</th>  
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1JgsxL905LyiIILqSpOAogSi22xXG3yX3" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1b5z59jxrO_atwqd3-AIAsZb9nvATvnsF" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1bngjG6bMUWQi8aIugWhrFPWNHrNAokZF" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1Qqb3jkdsqLDXesEjPARdtgEp_5YaaiMn" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Tacotron GST Style Transfer</th>  
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1n-b92Al7YNedJF4rxCJeFG6A6_vmNdU_" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+</table>
+<br><br>
+
+<a name="sec5" href="https://drive.google.com/open?id=1UBf1QuaPvw8ugh1bhiQvs09FBnPuc0Ir" target="_blank" style="color:#3cb371"><h3>4.4.2 Sampling the Posterior ( Seen speaker with alignments )</h3></a>
+<div>We illustrate Flowtron's ability to learn and transfer acoustic characteristics that are hard to express algorithmically but easy to perceive acoustically. We transfer the style with distinguished nasal voice and oscillation in fundamental frequency to our Flowtron baseline speaker.</div>
+<table border="0" width="33%" style="font-size:16px">
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron</th>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Style</th>       
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron Style Transfer</th>
+    </tr>
+    <tr>
+        <td><audio controls preload="none" style="height:30px"s><source src="http://docs.google.com/uc?export=open&id=1T9qjkgjORy_qafAgacuTvrxTFVhxRYhn" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"s><source src="http://docs.google.com/uc?export=open&id=17UoZQCbJZCVXnc0VlRzb0xEczbqe5Tp8" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"s><source src="http://docs.google.com/uc?export=open&id=1VSkem1eRiRF7Kk4dTONoexSwleENn568" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+    </table>
+</table>
+<br><br>
+
+<a name="sec6" href="https://drive.google.com/open?id=19QV7a9hcIfMxscL50xVvOYbvLJRdaHll" target="_blank" style="color:#3cb371"><h3>4.4.3 Sampling the Posterior ( Unseen speaker style )</h3></a>
+<div>We modify a speaker's style by using data from the same speaker but from a style not seen during training. Flowtron succeeds in transferring the somber style and the long pauses associated with the narrative style.</div>
+<table border="0" width="50%" style="font-size:16px">
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron</th>  
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=17_Pv9JlrJAgZTatIvu4Go9EXtQQCzZ1a" type="audio/mpeg">audio not supported</audio></td>       
+    </tr>
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Style</th>  
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=189gVDA38dBStW0okLHCmTvfMws_NFJHW" type="audio/mpeg">audio not supported</audio></td>       
+    </tr>
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron Style Transfer</th>  
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1afEnqGY7HLcYC5-zHGFfyq95uqnez9nK" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=11qP3OiREAp0wPMASjQBhpxpfRLPDSUNW" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1-zFqfWhmvkDUGiXeIco_YlqdlH0hJsfc" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1NbGmYESIvgiWpq4L3M4YXZOymWs0sJvV" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap">Tacotron GST Style Transfer</th>  
+        <td><audio controls preload="none" style="height:30px;width:220px"><source src="http://docs.google.com/uc?export=open&id=1efBvyTA-4aco5GczAHKsdpdM2wAxifEW" type="audio/mpeg">audio not supported</audio></td>        
+    </tr>
+</table>
+<br><br>
+
+<a name="sec7" href="https://drive.google.com/open?id=1c4MzW2-gkuJGSmiJv98Yjk2FFLuwKQjM" target="_blank" style="color:#3cb371"><h3>4.4.4 Sampling the Posterior ( Unseen speaker )</h3></a>
+<div>We transfer the style from speaker ID 03 from RAVDESS and the label "surprised" to Sally. Flowtron is able to make Sally sound surprised, which is drastically different from the monotonous baseline.</div>
+<table border="0" width="33%" style="font-size:16px">
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron</th>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Style</th>       
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron Style Transfer</th>
+    </tr>
+    <tr>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1HPmWAUnB_KIO_P6grkgwUeG4kOlA8Tof" type="audio/mpeg">audio not supported</audio></td>       
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=178IVjnxKnVZtQV8qKEEiSpSWvq7AN0R2" type="audio/mpeg">audio not supported</audio></td>       
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1aKi1zZD_wpdVIM6fLIMou300lwHAfX1e" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+</table>
+<br><br>
+
+<div>We transfer Richard Feynman's prosody and acoustic characteristics to Sally. Flowtron is able to pick up some of the prosody and articulation details particular to Feynman's speaking style and transfer them to Sally.</div>
+<table border="0" width="33%" style="font-size:16px">
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron</th>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Style</th>       
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Flowtron Style Transfer</th>
+    </tr>
+    <tr>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1azgdJSO3AVuWAsEiSx0q1H-uNrz09xlJ" type="audio/mpeg">audio not supported</audio></td>       
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1WoDYwAgGWDeWKkY7k3I1s9NTH-X1zD2-" type="audio/mpeg">audio not supported</audio></td>       
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=18Nwo1mMgjERv90k_aIxDg9zv_OOq2D_a" type="audio/mpeg">audio not supported</audio></td>
+    </tr>    
+</table>
+<br><br>
+
+<a name="sec8" href="https://drive.google.com/open?id=1qNWN_ToNInPn1tPhnw1QTpA8gl9Vx41V" target="_blank" style="color:#3cb371"><h3>4.5.2 Sampling the Gaussian Mixture ( Translating dimensions )</h3></a>
+<div>We select a single component from the gaussian mixture and translate a dimension associated with pitch. Although the samples have different pitch contours, they have the similar duration.</div>
+<table border="0" width="33%" style="font-size:16px">
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">μ (a-flat)</th>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">μ - 2σ (c)</th>       
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">μ - 4σ (e-flat)</th>
+    </tr>
+    <tr>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1ukTaigt2uYlf7rMOUqQyJrQ9ri6Bkotr" type="audio/mpeg">audio not supported</audio></td>       
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1l_WWyLRsWWsek4_1A3aX_EbXxHY16Ewi" type="audio/mpeg">audio not supported</audio></td>       
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1A3GUr5OZef8AAkqyoUQgNq22tjxdelsp" type="audio/mpeg">audio not supported</audio></td>
+    </tr>
+</table>
+<br><br>
+
+<table border="0" width="33%" style="font-size:16px">
+<div>We select a single component from the gaussian mixture and translate a dimension associated with speech rate. Although the samples have different speech rates, they have similar pitch contour.</div>
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">μ </th>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">μ - 2σ</th>       
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">μ - 4σ</th>
+    </tr>
+    <tr>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1bERFpNLZx1oKspqCrnJGdSXSoZrx0Ufm" type="audio/mpeg">audio not supported</audio></td>       
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1d-CE7Fds-rYuriYrkm_PxoOvonRppitl" type="audio/mpeg">audio not supported</audio></td>       
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1n05xb4jjb-FA7imgp_1ThMk3nBsoZUOO" type="audio/mpeg">audio not supported</audio></td>
+    </tr>    
+</table>
+<br><br>
+
+<a name="sec9" href="https://drive.google.com/open?id=10jAGkMVPl4kfuL7PQ_xE7KwIZwQYht-d" target="_blank" style="color:#3cb371"><h3>Extra Flowtron samples</h3></a>
+<table border="0" width="33%" style="font-size:16px">
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">To reverb or not to reverb</th>        
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1IkmtuX9aY-lTYhsQRj8FkfVmdwTMvgSp" type="audio/mpeg">audio not supported</audio></td>
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1TDFkczYNYOHDLcCrmPtEF9aa8_9lTXq0" type="audio/mpeg">audio not supported</audio></td>               
+    </tr>
+
+    <tr>
+        <th bgcolor="#3cb371" style="white-space:nowrap;height:30px;min-width: 240px">Queen's accent</th>        
+        <td><audio controls preload="none" style="height:30px"><source src="http://docs.google.com/uc?export=open&id=1aIzGVW7szvulP1qio1yPfW_Vn8fJYhaR" type="audio/mpeg">audio not supported</audio></td>               
+    </tr>    
+</table>
+<br><br>
