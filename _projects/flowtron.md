@@ -8,7 +8,7 @@ date: 2020-05-12
 ---
 
 <p align="center" markdown="1">
-![Flowtron](images/flowtron_logo.png){:width="70%"}
+![Flowtron](images/flowtron_logo.png){:width="100%"}
 </p>
 
 
