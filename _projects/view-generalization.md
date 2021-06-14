@@ -3,7 +3,7 @@ title: "View Generalization for Single Image Textured 3D Models"
 collection: publications
 permalink: view-generalization
 excerpt: ''
-date: 2021-06
+date: 2021-06-13
 venue: 'CVPR 2021'
 paperurl: ''
 citation: 'Anand Bhattad, Aysegul Dundar, Guilin Liu, Andrew Tao, Bryan Catanzaro, View Generalization for Single Image Textured 3D Models, Proceedings of IEEE Computer Society Conference on Computer Vision and Pattern Recognition(CVPR) 2021.'
