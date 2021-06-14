@@ -23,6 +23,7 @@ Humans can easily infer the underlying 3D geometry and texture of an object only
 [Coming Soon]()
 
 ## Sample Results
+{::nomarkdown}
 <table>
 <tr>
  <td><img src="images/view-generalization-sample_results/Input/img_175.png" width=256 \><p align="center"><center>Input</center></p></td><td><img src="images/view-generalization-sample_results/DIBR/img_175.gif" width=256 \><p align="center"><center>DIBR</center></p></td><td><img src="images/view-generalization-sample_results/ours_baseline/img_175.gif" width=256 \><p align="center"><center>Ours (baseline)</center></p></td><td><img src="images/view-generalization-sample_results/ours_final_ganv1/img_175.gif" width=256 \><p align="center"><center>Ours (final)</center></p></td></tr>
@@ -39,12 +40,15 @@ Humans can easily infer the underlying 3D geometry and texture of an object only
 <tr>
 <td><img src="images/view-generalization-sample_results/Input/img_215.png" width=256 \><p align="center"><center>Input</center></p></td><td><img src="images/view-generalization-sample_results/DIBR/img_215.gif" width=256 \><p align="center"><center>DIBR</center></p></td><td><img src="images/view-generalization-sample_results/ours_baseline/img_215.gif" width=256 \><p align="center"><center>Ours (baseline)</center></p></td><td><img src="images/view-generalization-sample_results/ours_final_ganv1/img_215.gif" width=256 \><p align="center"><center>Ours (final)</center></p></td></tr>
 </table>
+{:/}
 
 ## Authors
+{::nomarkdown}
 <table>
 <tr>
 <td><img src="images/view-generalization-authors/anand.png" width=256 \><p align="center"><center><a href="https://anandbhattad.github.io/">Anand Bhattad</a></center></p></td><td><img src="images/view-generalization-authors/ayse.jpeg" width=256 \><p align="center"><center><a href="http://www.cs.bilkent.edu.tr/~adundar/">Aysegul Dundar</a></center></p></td><td><img src="images/view-generalization-authors/guilin.jpeg" width=256 \><p align="center"><center><a href="https://liuguilin1225.github.io/">Guilin Liu</a></center></p></td><td><img src="images/view-generalization-authors/andrew.png" width=256 \><p align="center"><center><a href="https://scholar.google.com/citations?user=Wel9l1wAAAAJ&hl=en">Andrew Tao</a></center></p></td><td><img src="images/view-generalization-authors/bryan.jpeg" width=256 \><p align="center"><center><a href="https://ctnzr.io/">Bryan Catanzaro</a></center></p></td></tr>
 </table>
+{:/}
 
 ## Citation
 ```
